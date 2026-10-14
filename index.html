@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouLoop — assistente gratuito de automação para criadores e pequenos negócios</title>
+<meta name="description" content="O YouLoop é um aplicativo gratuito que organiza seus contatos e automatiza tarefas repetitivas nas redes sociais e no e-mail, com seus dados guardados no seu próprio computador.">
+<meta name="theme-color" content="#1778F2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YouLoop — deixe o repetitivo rodando em loop">
+<meta property="og:description" content="Assistente gratuito que organiza contatos e automatiza tarefas nas redes sociais e no e-mail. Seus dados ficam no seu computador.">
+<meta property="og:locale" content="pt_BR">
+<!-- SUBSTITUIR: endereço definitivo do site e imagem de compartilhamento (1200x630) -->
+<meta property="og:url" content="SUBSTITUIR_URL_DO_SITE">
+<meta property="og:image" content="SUBSTITUIR_URL_DA_IMAGEM_OG">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Ccircle cx='128' cy='128' r='128' fill='%231778F2'/%3E%3Cpath fill='%23fff' d='M201.9,172.5c0,17.3-11.7,30.2-29.2,30.2c-18.2,0-30.9-13.5-30.9-33.9v-62.3c0-21-15.5-37-36.3-37c-21,0-35.8,14.3-35.8,34.7c0,20.2,14.7,36.5,41.9,36.5h17.8v18.2h-17.8c-36.1,0-59.4-23.1-59.4-55.3c0-30.6,22-52.9,53.1-52.9c31.1-0.1,53.8,23.8,53.8,56v62.9c0,9.2,5.7,14.5,13.8,14.5c7.3,0,12.4-4.9,12.4-11.9c0-8.2-5.7-12.9-13.8-13.3v-18.2C191.3,141.7,201.9,154,201.9,172.5z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "YouLoop",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows",
+  "description": "Assistente pessoal gratuito que combina CRM e automação de tarefas em redes sociais e e-mail, com banco de dados local.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
+}
+</script>
+
+<style>
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+:root {
+  --blue: #1778F2;
+  --blue-deep: #0F5FCC;
+  --cyan: #17C3F2;
+  --violet: #7817F2;
+  --navy: #0E2244;
+  --paper: #F4F7FB;
+  --white: #FFFFFF;
+  --line: #DCE4EF;
+  --muted: #55657F;
+  --ok: #0E9F6E;
+  --error: #D32F45;
+
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.4rem);
+  --step-2: clamp(1.5rem, 1.33rem + 0.85vw, 2rem);
+  --step-3: clamp(1.9rem, 1.55rem + 1.75vw, 2.95rem);
+  --step-4: clamp(2.35rem, 1.7rem + 2.8vw, 4rem);
+
+  --radius-s: 10px;
+  --radius-m: 18px;
+  --radius-l: 28px;
+  --wrap: 1180px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--navy);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--navy); color: #fff; padding: .7rem 1rem; border-radius: var(--radius-s); text-decoration: none; }
+.skip:focus { top: 1rem; }
+
+/* Botões */
+.btn {
+  --bg: var(--blue); --fg: #fff;
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 52px; padding: .85rem 1.5rem;
+  border: 0; border-radius: 999px;
+  background: var(--bg); color: var(--fg);
+  font: 600 1rem/1 var(--body); text-decoration: none; cursor: pointer;
+  transition: background-color .2s, transform .2s, box-shadow .2s;
+}
+.btn:hover { background: var(--blue-deep); transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(23, 120, 242, .8); }
+.btn:active { transform: translateY(0); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn--ghost { --bg: transparent; --fg: var(--navy); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn--ghost:hover { background: var(--paper); box-shadow: inset 0 0 0 1.5px #c6d3e5; }
+.btn--light { --bg: #fff; --fg: var(--navy); }
+.btn--light:hover { background: #E8F1FE; }
+.btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ==========================================================================
+   Cabeçalho
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .86);
+  backdrop-filter: saturate(1.6) blur(14px);
+  -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s;
+}
+.site-header.is-scrolled { border-bottom-color: var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 72px; }
+.brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font: 800 1.35rem/1 var(--display); letter-spacing: -0.03em; }
+.brand svg { width: 36px; height: 36px; }
+.nav-links { display: flex; align-items: center; gap: .3rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { display: block; padding: .55rem .8rem; border-radius: 999px; text-decoration: none; font-weight: 500; color: var(--muted); transition: color .2s, background-color .2s; }
+.nav-links a:hover { color: var(--navy); background: var(--paper); }
+.nav-cta { min-height: 44px; padding: .65rem 1.15rem; }
+.menu-toggle { display: none; width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--paper); cursor: pointer; }
+.menu-toggle span { display: block; width: 18px; height: 2px; margin: 4px auto; background: var(--navy); border-radius: 2px; transition: transform .25s, opacity .25s; }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ==========================================================================
+   Hero — o loop é o elemento memorável da página
+   ========================================================================== */
+.hero { position: relative; overflow: hidden; padding: clamp(2.5rem, 6vw, 5.5rem) 0 clamp(3rem, 7vw, 6rem); }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem, 5vw, 4rem); }
+.free-pill {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .45rem .9rem .45rem .5rem; border-radius: 999px;
+  background: #E8F1FE; color: var(--blue-deep); font-weight: 600; font-size: var(--step--1);
+}
+.free-pill b { background: var(--blue); color: #fff; padding: .2rem .55rem; border-radius: 999px; font-weight: 700; }
+.hero h1 { margin-top: 1.2rem; font-size: var(--step-4); font-weight: 800; letter-spacing: -0.035em; }
+.hero-lead { margin-top: 1.3rem; max-width: 34em; font-size: var(--step-1); line-height: 1.5; color: var(--muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.hero-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 2rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: var(--step--1); font-weight: 500; }
+.hero-facts li { display: inline-flex; align-items: center; gap: .45rem; }
+.hero-facts svg { width: 18px; height: 18px; color: var(--ok); }
+
+.loop-stage { position: relative; aspect-ratio: 1; width: 100%; max-width: 560px; margin-inline: auto; }
+.loop-stage .loop-svg { width: 100%; height: 100%; overflow: visible; }
+.loop-track { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 3 7; }
+.loop-glyph-line { fill: none; stroke: url(#loopGradient); stroke-width: 2.2; stroke-linejoin: round; }
+.loop-glyph-fill { fill: url(#loopGradient); opacity: 0; }
+.loop-disc { fill: var(--paper); }
+.task {
+  position: absolute; left: 0; top: 0;
+  offset-path: path("M 280 60 A 220 220 0 1 1 279.99 60 Z");
+  offset-rotate: 0deg;
+  offset-distance: var(--start, 0%);
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .45rem .75rem; border-radius: 999px;
+  background: #fff; box-shadow: 0 6px 20px -10px rgba(14, 34, 68, .45), 0 0 0 1px var(--line);
+  font-size: .82rem; font-weight: 600; white-space: nowrap;
+  animation: travel 36s linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+.task i { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--blue)); }
+@keyframes travel { from { offset-distance: var(--start); } to { offset-distance: calc(var(--start) + 100%); } }
+.is-ready .task { opacity: 1; transition: opacity .8s ease .9s; }
+.is-ready .loop-glyph-fill { opacity: 1; transition: opacity .9s ease .9s; }
+
+/* ==========================================================================
+   Faixa "grátis de verdade"
+   ========================================================================== */
+.free-band { background: var(--navy); color: #fff; }
+.free-band .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); padding-block: clamp(1.8rem, 4vw, 2.6rem); }
+.free-band .zero { font: 800 clamp(3rem, 2rem + 4vw, 5.2rem)/0.9 var(--display); letter-spacing: -0.05em; color: var(--cyan); }
+.free-band .zero small { display: block; margin-top: .35rem; font: 600 .95rem/1.2 var(--body); letter-spacing: 0; color: #B9C8E0; }
+.free-band h2 { font-size: var(--step-2); }
+.free-band p { margin-top: .4rem; color: #C9D6EA; max-width: 46em; }
+
+/* ==========================================================================
+   Seções genéricas
+   ========================================================================== */
+.section { padding: clamp(4rem, 9vw, 7.5rem) 0; }
+.section--paper { background: var(--paper); }
+.section-head { max-width: 44rem; margin-bottom: clamp(2.2rem, 5vw, 3.5rem); }
+.section-head h2 { font-size: var(--step-3); }
+.section-head p { margin-top: 1rem; color: var(--muted); font-size: var(--step-1); line-height: 1.5; }
+
+/* Razões para baixar: linhas alternadas com uma miniatura da tela */
+.reasons { display: grid; gap: clamp(3rem, 7vw, 5.5rem); }
+.reason { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(1.8rem, 5vw, 4.5rem); }
+.reason:nth-child(even) .reason-copy { order: 2; }
+.reason h3 { font-size: var(--step-2); }
+.reason p { margin-top: .9rem; color: var(--muted); max-width: 32em; }
+.reason ul { margin: 1.2rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.reason li { display: flex; gap: .6rem; align-items: flex-start; }
+.reason li svg { width: 20px; height: 20px; flex: none; margin-top: .2rem; color: var(--blue); }
+
+/* Miniaturas de interface (ilustrativas, desenhadas em HTML) */
+.mock {
+  position: relative; border-radius: var(--radius-l); padding: clamp(1rem, 2.5vw, 1.6rem);
+  background: linear-gradient(160deg, #EEF4FD, #F7FAFE);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.mock-window { background: #fff; border-radius: var(--radius-m); box-shadow: 0 24px 50px -30px rgba(14, 34, 68, .5), 0 0 0 1px var(--line); overflow: hidden; }
+.mock-bar { display: flex; align-items: center; gap: .4rem; padding: .7rem 1rem; border-bottom: 1px solid var(--line); font-size: .8rem; font-weight: 600; color: var(--muted); }
+.mock-bar span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.mock-bar em { margin-left: .5rem; font-style: normal; }
+.mock-body { padding: 1rem; display: grid; gap: .6rem; font-size: .88rem; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .7rem .8rem; border-radius: 12px; background: var(--paper); }
+.row strong { font-weight: 600; }
+.row small { color: var(--muted); }
+.tag { flex: none; padding: .2rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+.tag--run { background: #E3F7EF; color: var(--ok); }
+.tag--wait { background: #E8F1FE; color: var(--blue-deep); }
+.tag--plan { background: #F0E7FE; color: var(--violet); }
+.avatar { width: 30px; height: 30px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font-size: .75rem; font-weight: 700; }
+.who { display: flex; align-items: center; gap: .65rem; }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 64px; padding: 0 .3rem; }
+.bars i { flex: 1; border-radius: 6px 6px 2px 2px; background: #CFE0FB; }
+.bars i.on { background: var(--blue); }
+.lock { display: grid; place-items: center; gap: .7rem; padding: 1.6rem 1rem; text-align: center; }
+.lock svg { width: 54px; height: 54px; color: var(--blue); }
+.lock code { font: 600 .82rem/1.4 ui-monospace, "Cascadia Code", Consolas, monospace; background: var(--paper); padding: .35rem .6rem; border-radius: 8px; }
+
+/* Como funciona: é uma sequência de verdade, então leva número */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 2rem); counter-reset: step; margin: 0; padding: 0; list-style: none; }
+.step { position: relative; padding-top: 4.4rem; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; top: 0; left: 0;
+  width: 3.2rem; height: 3.2rem; border-radius: 50%;
+  display: grid; place-items: center;
+  font: 800 1.35rem/1 var(--display); color: #fff; background: var(--blue);
+}
+.step:not(:last-child)::after { content: ""; position: absolute; top: 1.6rem; left: 4rem; right: -1rem; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
+.step h3 { font-size: var(--step-1); }
+.step p { margin-top: .6rem; color: var(--muted); }
+
+/* Para quem é */
+.audiences { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); }
+.audience { padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: var(--radius-l); background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.audience h3 { font-size: var(--step-2); }
+.audience p { margin-top: .8rem; color: var(--muted); }
+.audience--creator { background: linear-gradient(150deg, #fff 55%, #EAF7FD); }
+.audience--business { background: linear-gradient(150deg, #fff 55%, #F2EBFE); }
+
+/* ==========================================================================
+   Download
+   ========================================================================== */
+.download { background: var(--blue); color: #fff; position: relative; overflow: hidden; }
+.download::before {
+  content: ""; position: absolute; width: 760px; height: 760px; right: -220px; top: -260px; border-radius: 50%;
+  border: 90px solid rgba(255, 255, 255, .07);
+}
+.download .wrap { position: relative; }
+.download h2 { font-size: var(--step-3); max-width: 16em; }
+.download .section-head p { color: #DCE9FD; }
+.platforms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.2rem; }
+.platform {
+  display: grid; gap: .25rem; align-content: start;
+  min-height: 132px; padding: 1.25rem; border-radius: var(--radius-m);
+  background: rgba(255, 255, 255, .1); color: #fff; text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+  transition: background-color .2s, transform .2s;
+}
+.platform:hover { background: rgba(255, 255, 255, .18); transform: translateY(-2px); }
+.platform svg { width: 28px; height: 28px; margin-bottom: .6rem; }
+.platform strong { font-size: 1.05rem; }
+.platform span { font-size: .88rem; color: #DCE9FD; }
+.platform--main { background: #fff; color: var(--navy); box-shadow: none; }
+.platform--main span { color: var(--muted); }
+.platform--main:hover { background: #EEF4FD; }
+.platform[aria-disabled="true"] { cursor: default; transform: none; }
+.platform[aria-disabled="true"]:hover { background: rgba(255, 255, 255, .1); }
+.platform--main[aria-disabled="true"]:hover { background: #fff; }
+.soon { justify-self: start; margin-top: .5rem; padding: .15rem .55rem; border-radius: 999px; background: rgba(255, 255, 255, .2); font-size: .74rem; font-weight: 700; }
+.platform--main .soon { background: #E8F1FE; color: var(--blue-deep); }
+.download-note { margin-top: 1.6rem; color: #DCE9FD; font-size: var(--step--1); }
+
+/* ==========================================================================
+   Formulário de novidades
+   ========================================================================== */
+.news { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.news-copy h2 { font-size: var(--step-3); }
+.news-copy p { margin-top: 1rem; color: var(--muted); font-size: var(--step-1); line-height: 1.5; }
+.news-copy ul { margin: 1.6rem 0 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
+.news-copy li { display: flex; gap: .6rem; }
+.news-copy li svg { width: 22px; height: 22px; flex: none; color: var(--blue); }
+.form-card { padding: clamp(1.4rem, 4vw, 2.4rem); border-radius: var(--radius-l); background: #fff; box-shadow: 0 30px 60px -40px rgba(14, 34, 68, .55), 0 0 0 1px var(--line); }
+.field { display: grid; gap: .4rem; margin-bottom: 1.1rem; }
+.field label { font-weight: 600; font-size: .95rem; }
+.field .hint { font-size: .84rem; color: var(--muted); }
+.field input {
+  width: 100%; min-height: 52px; padding: .8rem 1rem;
+  border: 1.5px solid var(--line); border-radius: 14px; background: var(--paper);
+  font: 500 1rem/1.2 var(--body); color: var(--navy);
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+}
+.field input:hover { border-color: #C3D2E6; }
+.field input:focus { outline: none; border-color: var(--blue); background: #fff; box-shadow: 0 0 0 4px rgba(23, 120, 242, .15); }
+.field.has-error input { border-color: var(--error); background: #FFF6F7; }
+.field .error { display: none; font-size: .86rem; font-weight: 600; color: var(--error); }
+.field.has-error .error { display: block; }
+.consent { display: flex; gap: .7rem; align-items: flex-start; margin: .4rem 0 1.4rem; font-size: .9rem; color: var(--muted); }
+.consent input { width: 20px; height: 20px; margin-top: .15rem; flex: none; accent-color: var(--blue); }
+.consent.has-error { color: var(--error); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-card .btn { width: 100%; }
+.form-status { display: none; margin-top: 1rem; padding: .9rem 1rem; border-radius: 14px; font-size: .93rem; font-weight: 500; }
+.form-status.is-info { display: block; background: #E8F1FE; color: var(--blue-deep); }
+.form-status.is-ok { display: block; background: #E3F7EF; color: #0A7350; }
+.form-status.is-error { display: block; background: #FDECEE; color: #A3192C; }
+.form-status a { font-weight: 700; }
+
+/* ==========================================================================
+   Comunidade
+   ========================================================================== */
+.community { background: var(--navy); color: #fff; }
+.community .section-head p { color: #B9C8E0; }
+.socials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.social {
+  --c: var(--blue);
+  position: relative; display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem 1.3rem; border-radius: var(--radius-m);
+  background: rgba(255, 255, 255, .05); color: #fff; text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+  transition: background-color .25s, box-shadow .25s, transform .25s;
+}
+.social:hover { background: rgba(255, 255, 255, .09); box-shadow: inset 0 0 0 1px var(--c); transform: translateY(-2px); }
+.social .icon { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; background: var(--c); }
+.social .icon svg { width: 26px; height: 26px; fill: #fff; }
+.social strong { display: block; font-size: 1.08rem; }
+.social span { display: block; font-size: .9rem; color: #B9C8E0; }
+.social .soon { position: absolute; top: .9rem; right: .9rem; margin: 0; background: rgba(255, 255, 255, .12); color: #DCE6F5; }
+.social[aria-disabled="true"] { cursor: default; }
+.social[aria-disabled="true"]:hover { transform: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); background: rgba(255, 255, 255, .05); }
+
+/* ==========================================================================
+   Perguntas e contato
+   ========================================================================== */
+.faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 5vw, 4.5rem); }
+.faq-list { display: grid; gap: .7rem; }
+.faq details { border-radius: var(--radius-m); background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 1.15rem 1.3rem; cursor: pointer; list-style: none; font-weight: 600; font-size: 1.04rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; width: 12px; height: 12px; flex: none; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: rotate(45deg) translateY(-3px); transition: transform .25s; }
+.faq details[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+.faq details p { padding: 0 1.3rem 1.2rem; color: var(--muted); }
+.contact-card { margin-top: 2rem; padding: 1.5rem; border-radius: var(--radius-m); background: var(--paper); }
+.contact-card h3 { font-size: var(--step-1); }
+.contact-card p { margin-top: .5rem; color: var(--muted); }
+.contact-card a.mail { display: inline-block; margin-top: .8rem; font: 700 1.1rem/1.3 var(--display); color: var(--blue); text-decoration: none; word-break: break-all; }
+.contact-card a.mail:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   CTA final e rodapé
+   ========================================================================== */
+.final { text-align: center; }
+.final h2 { font-size: var(--step-4); max-width: 14em; margin-inline: auto; }
+.final p { margin: 1.2rem auto 0; max-width: 36em; color: var(--muted); font-size: var(--step-1); }
+.final .hero-actions { justify-content: center; }
+
+.site-footer { background: #0A1A35; color: #B9C8E0; padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; font-size: .94rem; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 2rem; }
+.site-footer .brand { color: #fff; }
+.footer-about { margin-top: 1rem; max-width: 26em; }
+.site-footer h3 { font: 700 1rem/1.2 var(--body); color: #fff; margin-bottom: .9rem; letter-spacing: 0; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.site-footer a { text-decoration: none; transition: color .2s; }
+.site-footer a:hover { color: #fff; }
+.footer-socials { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+.footer-socials a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: rgba(255, 255, 255, .07); }
+.footer-socials a:hover { background: rgba(255, 255, 255, .15); }
+.footer-socials svg { width: 19px; height: 19px; fill: currentColor; }
+.footer-socials a[aria-disabled="true"] { opacity: .45; }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .1); font-size: .86rem; }
+
+/* Botão flutuante de download no celular */
+.sticky-cta { display: none; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+@media (max-width: 1020px) {
+  .platforms { grid-template-columns: 1fr 1fr; }
+  .socials { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 880px) {
+  .nav-links {
+    position: fixed; inset: 72px 0 auto 0; flex-direction: column; align-items: stretch; gap: 0;
+    padding: .5rem var(--gutter) 1.2rem; background: #fff; border-bottom: 1px solid var(--line);
+    transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity .2s, transform .2s, visibility .2s;
+  }
+  .nav-links.is-open { transform: none; opacity: 1; visibility: visible; }
+  .nav-links a { padding: .9rem .6rem; border-radius: 10px; }
+  .menu-toggle { display: block; }
+  .nav-cta { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .loop-stage { max-width: 440px; }
+  .free-band .wrap { grid-template-columns: auto 1fr; }
+  .free-band .btn { grid-column: 1 / -1; justify-self: start; }
+  .reason { grid-template-columns: 1fr; }
+  .reason:nth-child(even) .reason-copy { order: 0; }
+  .steps { grid-template-columns: 1fr; gap: 2rem; }
+  .step:not(:last-child)::after { display: none; }
+  .audiences, .news, .faq { grid-template-columns: 1fr; }
+  .sticky-cta {
+    display: flex; position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 40;
+    transform: translateY(140%); transition: transform .3s;
+  }
+  .sticky-cta.is-visible { transform: none; }
+  .sticky-cta .btn { width: 100%; box-shadow: 0 14px 30px -12px rgba(14, 34, 68, .6); }
+}
+@media (max-width: 560px) {
+  .platforms, .socials, .footer-grid { grid-template-columns: 1fr; }
+  .free-band .wrap { grid-template-columns: 1fr; }
+  .hero-actions .btn { width: 100%; }
+  .loop-stage { width: 78%; }
+  .task:nth-of-type(even) { display: none; }
+  .task { font-size: .72rem; padding: .35rem .6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .task { animation: none; opacity: 1; }
+  .loop-glyph-fill { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- Símbolos reutilizados (ícones) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-logo" viewBox="0 0 256 256"><circle cx="128" cy="128" r="128" fill="#1778F2"/><path fill="#fff" d="M201.9,172.5c0,17.3-11.7,30.2-29.2,30.2c-18.2,0-30.9-13.5-30.9-33.9v-62.3c0-21-15.5-37-36.3-37c-21,0-35.8,14.3-35.8,34.7c0,20.2,14.7,36.5,41.9,36.5h17.8v18.2h-17.8c-36.1,0-59.4-23.1-59.4-55.3c0-30.6,22-52.9,53.1-52.9c31.1-0.1,53.8,23.8,53.8,56v62.9c0,9.2,5.7,14.5,13.8,14.5c7.3,0,12.4-4.9,12.4-11.9c0-8.2-5.7-12.9-13.8-13.3v-18.2C191.3,141.7,201.9,154,201.9,172.5z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5l7.5-1v7H3zm8.5-1.2L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zm8.5 0H21V21l-9.5-1.3z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0012 2z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l.1.1 9.2-9.2v-.6L4.3 2.5zM16.6 15.3l-3.1-3v-.6l3.1-3.1.1.1 3.6 2.1c1 .6 1 1.6 0 2.2l-3.6 2.1zM16.7 15.2L13.5 12l-9.3 9.3c.3.4.9.4 1.6.1l10.9-6.2M16.7 8.8L5.8 2.6c-.7-.4-1.3-.3-1.6.1L13.5 12z"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.1.1 2.3-.6 3.1-1.5z"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.51c-1.5 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8C2.4 4 3.9 2.4 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M12.5.02C13.8 0 15.1.01 16.4 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 01-2.4-1.5 9 9 0 01-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 00-.8.4 3.4 3.4 0 00-1 2.5 5.9 5.9 0 001.2 3.1 13.5 13.5 0 005.2 4.6c.7.3 1.3.5 1.7.6a4.2 4.2 0 001.9.1 3.1 3.1 0 002-1.4 2.5 2.5 0 00.2-1.4c-.1-.1-.3-.2-.6-.4zM12 21.8a9.8 9.8 0 01-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1112 21.8zM20.5 3.5A11.8 11.8 0 001.9 17.7L.2 24l6.4-1.7a11.8 11.8 0 005.6 1.4 11.8 11.8 0 008.4-20.2z"/></symbol>
+    <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M23.9 3.6L20.3 20.5c-.3 1.2-1 1.5-2 .9l-5.4-4-2.6 2.5c-.3.3-.5.5-1.1.5l.4-5.6L19.8 5.7c.4-.4-.1-.6-.7-.2L6.5 13.4 1.1 11.7c-1.2-.4-1.2-1.2.2-1.7L22.4 1.9c1-.4 1.8.2 1.5 1.7z"/></symbol>
+    <linearGradient id="loopGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17C3F2"/>
+      <stop offset=".55" stop-color="#1778F2"/>
+      <stop offset="1" stop-color="#7817F2"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="site-header" id="topo">
+  <nav class="wrap nav" aria-label="Principal">
+    <a class="brand" href="#topo" aria-label="YouLoop, início">
+      <svg aria-hidden="true"><use href="#i-logo"/></svg>
+      YouLoop
+    </a>
+    <ul class="nav-links" id="menu">
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#baixar">Baixar</a></li>
+      <li><a href="#comunidade">Comunidade</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn nav-cta" href="#baixar">Baixar grátis</a>
+    <button class="menu-toggle" type="button" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <!-- ===================== Apresentação ===================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="free-pill"><b>Grátis</b> Sem plano pago, sem cartão de crédito</span>
+        <h1 id="hero-title">Deixe o trabalho repetitivo rodando em loop.</h1>
+        <p class="hero-lead">O YouLoop é um assistente para o seu computador que organiza seus contatos e automatiza as tarefas que você repete todo dia nas redes sociais e no e-mail. Você define o que fazer e quando; ele cuida do resto.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#baixar" data-cta="hero-download">
+            <svg aria-hidden="true"><use href="#i-download"/></svg>
+            Baixar grátis
+          </a>
+          <a class="btn btn--ghost" href="#como-funciona">Ver como funciona</a>
+        </div>
+        <ul class="hero-facts">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gratuito para usar</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Seus dados ficam no seu computador</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sem criar conta no YouLoop</li>
+        </ul>
+      </div>
+
+      <!-- O loop: o símbolo da marca é desenhado e as tarefas circulam ao redor -->
+      <div class="loop-stage" aria-hidden="true">
+        <svg class="loop-svg" viewBox="0 0 560 560">
+          <circle class="loop-track" cx="280" cy="280" r="220"/>
+          <circle class="loop-disc" cx="280" cy="280" r="138"/>
+          <g transform="translate(152 152)">
+            <path class="loop-glyph-fill" d="M201.9,172.5c0,17.3-11.7,30.2-29.2,30.2c-18.2,0-30.9-13.5-30.9-33.9v-62.3c0-21-15.5-37-36.3-37c-21,0-35.8,14.3-35.8,34.7c0,20.2,14.7,36.5,41.9,36.5h17.8v18.2h-17.8c-36.1,0-59.4-23.1-59.4-55.3c0-30.6,22-52.9,53.1-52.9c31.1-0.1,53.8,23.8,53.8,56v62.9c0,9.2,5.7,14.5,13.8,14.5c7.3,0,12.4-4.9,12.4-11.9c0-8.2-5.7-12.9-13.8-13.3v-18.2C191.3,141.7,201.9,154,201.9,172.5z"/>
+            <path class="loop-glyph-line" d="M201.9,172.5c0,17.3-11.7,30.2-29.2,30.2c-18.2,0-30.9-13.5-30.9-33.9v-62.3c0-21-15.5-37-36.3-37c-21,0-35.8,14.3-35.8,34.7c0,20.2,14.7,36.5,41.9,36.5h17.8v18.2h-17.8c-36.1,0-59.4-23.1-59.4-55.3c0-30.6,22-52.9,53.1-52.9c31.1-0.1,53.8,23.8,53.8,56v62.9c0,9.2,5.7,14.5,13.8,14.5c7.3,0,12.4-4.9,12.4-11.9c0-8.2-5.7-12.9-13.8-13.3v-18.2C191.3,141.7,201.9,154,201.9,172.5z"/>
+          </g>
+        </svg>
+        <div class="task" style="--start:0%;  --dot:#1778F2">Pesquisar perfis<i></i></div>
+        <div class="task" style="--start:17%; --dot:#17C3F2">Curtir publicações<i></i></div>
+        <div class="task" style="--start:34%; --dot:#7817F2">Responder comentários<i></i></div>
+        <div class="task" style="--start:51%; --dot:#0E9F6E">Enviar e-mails<i></i></div>
+        <div class="task" style="--start:68%; --dot:#1778F2">Agendar campanha<i></i></div>
+        <div class="task" style="--start:85%; --dot:#17C3F2">Salvar contato<i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Gratuidade ===================== -->
+  <section class="free-band" aria-labelledby="free-title">
+    <div class="wrap">
+      <p class="zero" aria-hidden="true">R$&nbsp;0<small>hoje e amanhã</small></p>
+      <div>
+        <h2 id="free-title">Gratuito de verdade, sem pegadinha.</h2>
+        <p>Você baixa, instala e usa sem pagar nada. O YouLoop se mantém com anúncios exibidos dentro do aplicativo. Se um dia surgir algum recurso pago, ele será opcional e só vale com a sua aceitação.</p>
+      </div>
+      <a class="btn btn--light" href="#baixar">Quero o YouLoop</a>
+    </div>
+  </section>
+
+  <!-- ===================== Razões para baixar ===================== -->
+  <section class="section" id="recursos" aria-labelledby="recursos-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="recursos-title">Menos cliques repetidos. Mais tempo para o que só você faz.</h2>
+        <p>Criar conteúdo, atender clientes e divulgar o seu trabalho já toma o dia inteiro. O YouLoop assume a parte mecânica para você se concentrar na parte criativa.</p>
+      </div>
+
+      <div class="reasons">
+        <article class="reason">
+          <div class="reason-copy">
+            <h3>Automatize as tarefas que você repete todo dia</h3>
+            <p>Monte campanhas com as ações que você faria à mão e deixe o YouLoop executar no ritmo que você escolher.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pesquisas, curtidas, comentários e respostas</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Envio de e-mails com as suas próprias contas</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Seguir perfis, compartilhar e publicar</li>
+            </ul>
+          </div>
+          <div class="mock" aria-hidden="true">
+            <div class="mock-window">
+              <div class="mock-bar"><span></span><span></span><span></span><em>Campanhas</em></div>
+              <div class="mock-body">
+                <div class="row"><div><strong>Engajamento no Instagram</strong><br><small>Curtir e comentar em 40 publicações</small></div><span class="tag tag--run">Rodando</span></div>
+                <div class="row"><div><strong>Novidades por e-mail</strong><br><small>Lista de clientes, 2 contas de envio</small></div><span class="tag tag--wait">Na fila</span></div>
+                <div class="row"><div><strong>Respostas no YouTube</strong><br><small>Comentários do último vídeo</small></div><span class="tag tag--plan">Agendada</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="reason">
+          <div class="reason-copy">
+            <h3>Seus contatos organizados em um só lugar</h3>
+            <p>O YouLoop também é um CRM: guarde contatos, e-mails, telefones e endereços, filtre o que interessa e use essas informações nas suas automações.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cadastro completo, com busca de endereço pelo CEP</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Filtros e relatórios para enxergar seus números</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Lista de bloqueio para quem não quer ser contatado</li>
+            </ul>
+          </div>
+          <div class="mock" aria-hidden="true">
+            <div class="mock-window">
+              <div class="mock-bar"><span></span><span></span><span></span><em>Contatos</em></div>
+              <div class="mock-body">
+                <div class="row"><div class="who"><span class="avatar" style="background:#1778F2">AL</span><div><strong>Ana Lima</strong><br><small>Cliente desde março</small></div></div><span class="tag tag--run">Ativo</span></div>
+                <div class="row"><div class="who"><span class="avatar" style="background:#7817F2">RM</span><div><strong>Rafael Moura</strong><br><small>Parceria em negociação</small></div></div><span class="tag tag--plan">Seguir</span></div>
+                <div class="row" style="display:block"><small>Interações na semana</small><div class="bars" style="margin-top:.5rem"><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i class="on" style="height:86%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:35%"></i></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="reason">
+          <div class="reason-copy">
+            <h3>Agende e esqueça</h3>
+            <p>Defina dias, horários e intervalos entre as ações. As campanhas começam sozinhas na hora marcada, mesmo com várias abas e navegadores trabalhando ao mesmo tempo.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Agendamentos por dia e horário</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Pausas e limites para um ritmo natural</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Várias contas e navegadores integrados</li>
+            </ul>
+          </div>
+          <div class="mock" aria-hidden="true">
+            <div class="mock-window">
+              <div class="mock-bar"><span></span><span></span><span></span><em>Agenda</em></div>
+              <div class="mock-body">
+                <div class="row"><div><strong>Seg, Qua e Sex</strong><br><small>09:00 às 12:00</small></div><span class="tag tag--plan">Engajamento</span></div>
+                <div class="row"><div><strong>Todos os dias</strong><br><small>18:30</small></div><span class="tag tag--wait">E-mails</span></div>
+                <div class="row"><div><strong>Intervalo entre ações</strong><br><small>de 40 a 90 segundos</small></div><span class="tag tag--run">Ligado</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="reason">
+          <div class="reason-copy">
+            <h3>Seus dados não saem do seu computador</h3>
+            <p>O YouLoop não usa servidor próprio: o banco de dados fica salvo na sua máquina. Nós não temos acesso aos seus contatos, às suas mensagens nem às senhas das suas contas.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Banco de dados local, sob o seu controle</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sem login no YouLoop para começar</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Termos de Uso e Aviso de Privacidade claros</li>
+            </ul>
+          </div>
+          <div class="mock" aria-hidden="true">
+            <div class="mock-window">
+              <div class="mock-bar"><span></span><span></span><span></span><em>Privacidade</em></div>
+              <div class="lock">
+                <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 10V8a6 6 0 1112 0v2M5 10h14v10H5zM12 14v3"/></svg>
+                <strong>Tudo armazenado neste computador</strong>
+                <code>data.db3 &middot; neste computador</code>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Como funciona ===================== -->
+  <section class="section section--paper" id="como-funciona" aria-labelledby="como-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="como-title">Do download à primeira campanha em poucos minutos</h2>
+        <p>Sem configuração de servidor, sem cadastro em site, sem cartão.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <h3>Baixe e instale</h3>
+          <p>Faça o download gratuito e instale no seu computador como qualquer outro programa.</p>
+        </li>
+        <li class="step">
+          <h3>Conecte suas contas</h3>
+          <p>Adicione as contas das redes sociais e do e-mail que você já usa e cadastre seus contatos.</p>
+        </li>
+        <li class="step">
+          <h3>Monte e agende</h3>
+          <p>Escolha as ações, o ritmo e o horário. O YouLoop executa e mostra o que foi feito.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== Para quem é ===================== -->
+  <section class="section" aria-labelledby="quem-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="quem-title">Feito para quem faz tudo sozinho</h2>
+      </div>
+      <div class="audiences">
+        <article class="audience audience--creator">
+          <h3>Criadores de conteúdo</h3>
+          <p>Mantenha o contato com o seu público em dia: responda, interaja e acompanhe novos perfis sem passar horas no celular. Sobra mais tempo para gravar, editar e criar.</p>
+        </article>
+        <article class="audience audience--business">
+          <h3>Pequenos negócios</h3>
+          <p>Divulgue produtos e serviços, organize clientes e envie novidades por e-mail com a mesma rotina de uma equipe maior, usando apenas o seu computador.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Download ===================== -->
+  <section class="section download" id="baixar" aria-labelledby="baixar-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="baixar-title">Baixe o YouLoop grátis e comece hoje</h2>
+        <p>Escolha onde baixar. A versão para Windows é a principal; as demais plataformas aparecem aqui assim que forem lançadas.</p>
+      </div>
+      <div class="platforms">
+        <a class="platform platform--main" data-link="DOWNLOAD_WINDOWS" href="#">
+          <svg aria-hidden="true"><use href="#i-windows"/></svg>
+          <strong>Windows</strong>
+          <span>Instalador para computador</span>
+        </a>
+        <a class="platform" data-link="DOWNLOAD_GITHUB" href="#">
+          <svg aria-hidden="true"><use href="#i-github"/></svg>
+          <strong>GitHub</strong>
+          <span>Versões e notas de lançamento</span>
+        </a>
+        <a class="platform" data-link="DOWNLOAD_GOOGLE_PLAY" href="#">
+          <svg aria-hidden="true"><use href="#i-play"/></svg>
+          <strong>Google Play</strong>
+          <span>Android</span>
+        </a>
+        <a class="platform" data-link="DOWNLOAD_APP_STORE" href="#">
+          <svg aria-hidden="true"><use href="#i-apple"/></svg>
+          <strong>App Store</strong>
+          <span>iPhone, iPad e Mac</span>
+        </a>
+      </div>
+      <p class="download-note">Ao instalar, você concorda com os <a href="#" data-link="TERMOS_DE_USO">Termos de Uso</a> e com o <a href="#" data-link="AVISO_DE_PRIVACIDADE">Aviso de Privacidade</a>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== Novidades ===================== -->
+  <section class="section section--paper" id="novidades" aria-labelledby="news-title">
+    <div class="wrap news">
+      <div class="news-copy">
+        <h2 id="news-title">Fique por dentro do que vem por aí</h2>
+        <p>Cadastre-se para receber novidades, atualizações e dicas para tirar mais proveito do YouLoop.</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Aviso de novas versões e recursos</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tutoriais e ideias de automação</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sem spam: você cancela quando quiser</li>
+        </ul>
+      </div>
+
+      <form class="form-card" id="news-form" novalidate>
+        <div class="field">
+          <label for="f-name">Nome</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" maxlength="80" required aria-describedby="e-name">
+          <span class="error" id="e-name">Digite seu nome (pelo menos 2 letras).</span>
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required aria-describedby="e-email">
+          <span class="error" id="e-email">Digite um e-mail válido, como nome@exemplo.com.</span>
+        </div>
+        <div class="field">
+          <label for="f-whatsapp">WhatsApp</label>
+          <span class="hint" id="h-whatsapp">Com DDD. Fora do Brasil, comece com + e o código do país.</span>
+          <input id="f-whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="22" placeholder="(11) 91234-5678" required aria-describedby="h-whatsapp e-whatsapp">
+          <span class="error" id="e-whatsapp">Digite um número de WhatsApp válido, com DDD.</span>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="f-site">Deixe este campo em branco</label>
+          <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="consent" id="consent-wrap">
+          <input id="f-consent" name="consent" type="checkbox" required>
+          <span>Aceito receber comunicações do YouLoop e li o <a href="#" data-link="AVISO_DE_PRIVACIDADE">Aviso de Privacidade</a>.</span>
+        </label>
+        <button class="btn" type="submit" id="news-submit">Quero receber novidades</button>
+        <div class="form-status" id="news-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== Comunidade ===================== -->
+  <section class="section community" id="comunidade" aria-labelledby="comunidade-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="comunidade-title">Faça parte da comunidade YouLoop</h2>
+        <p>Tutoriais, novidades em primeira mão e uma turma trocando ideias de automação. Escolha onde você prefere acompanhar.</p>
+      </div>
+      <div class="socials">
+        <a class="social" style="--c:#FF0033" data-link="YOUTUBE" href="#"><span class="icon"><svg aria-hidden="true"><use href="#i-youtube"/></svg></span><span><strong>YouTube</strong><span>Tutoriais passo a passo</span></span></a>
+        <a class="social" style="--c:#1877F2" data-link="FACEBOOK" href="#"><span class="icon"><svg aria-hidden="true"><use href="#i-facebook"/></svg></span><span><strong>Facebook</strong><span>Novidades e avisos</span></span></a>
+        <a class="social" style="--c:#D62976" data-link="INSTAGRAM" href="#"><span class="icon"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span><span><strong>Instagram</strong><span>Dicas rápidas e bastidores</span></span></a>
+        <a class="social" style="--c:#25F4EE" data-link="TIKTOK" href="#"><span class="icon" style="background:#000"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></span><span><strong>TikTok</strong><span>Automação em 60 segundos</span></span></a>
+        <a class="social" style="--c:#25D366" data-link="WHATSAPP" href="#"><span class="icon"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></span><span><strong>WhatsApp</strong><span>Canal de avisos</span></span></a>
+        <a class="social" style="--c:#26A5E4" data-link="TELEGRAM" href="#"><span class="icon"><svg aria-hidden="true"><use href="#i-telegram"/></svg></span><span><strong>Telegram</strong><span>Grupo da comunidade</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Perguntas e contato ===================== -->
+  <section class="section" id="contato" aria-labelledby="faq-title">
+    <div class="wrap faq">
+      <div>
+        <div class="section-head" style="margin-bottom:0">
+          <h2 id="faq-title">Perguntas frequentes</h2>
+          <p>Respostas diretas sobre o que o YouLoop é e o que ele não é.</p>
+        </div>
+        <div class="contact-card">
+          <h3>Ainda ficou com dúvida?</h3>
+          <p>Escreva para a equipe do YouLoop. Respondemos em horário comercial.</p>
+          <a class="mail" href="#" data-link="EMAIL_CONTATO" data-email="true">contato</a>
+        </div>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>O YouLoop é mesmo gratuito?</summary>
+          <p>Sim. Você baixa, instala e usa sem pagar. O aplicativo se mantém com anúncios exibidos dentro dele. Se algum recurso pago for criado no futuro, ele será opcional e informado antes.</p>
+        </details>
+        <details>
+          <summary>Onde ficam os meus dados?</summary>
+          <p>No seu computador. O YouLoop não tem servidor próprio, então seus contatos, mensagens e senhas não passam por nós.</p>
+        </details>
+        <details>
+          <summary>Preciso criar uma conta no YouLoop?</summary>
+          <p>Não. Só as plataformas que você conectar, como o seu e-mail ou as suas redes sociais, pedem o login de cada uma.</p>
+        </details>
+        <details>
+          <summary>O YouLoop garante mais seguidores ou vendas?</summary>
+          <p>Não, e desconfie de quem garante. O YouLoop automatiza as ações que você escolher; os resultados dependem do seu conteúdo, do seu público e das regras de cada plataforma.</p>
+        </details>
+        <details>
+          <summary>Posso usar em qualquer rede social?</summary>
+          <p>O YouLoop trabalha com as principais redes e com e-mail. Cada plataforma tem as suas regras de uso; leia e respeite essas regras ao montar suas automações.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Chamada final ===================== -->
+  <section class="section section--paper final" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">Seu próximo loop começa com um download gratuito.</h2>
+      <p>Instale o YouLoop, conecte suas contas e veja a rotina andar sozinha.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#baixar"><svg aria-hidden="true"><use href="#i-download"/></svg>Baixar grátis</a>
+        <a class="btn btn--ghost" href="#comunidade">Seguir o YouLoop</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#topo"><svg aria-hidden="true"><use href="#i-logo"/></svg>YouLoop</a>
+        <p class="footer-about">Assistente pessoal gratuito que une organização de contatos e automação de tarefas, com os seus dados guardados no seu computador.</p>
+        <div class="footer-socials">
+          <a data-link="YOUTUBE" href="#" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+          <a data-link="FACEBOOK" href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+          <a data-link="INSTAGRAM" href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a data-link="TIKTOK" href="#" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+          <a data-link="WHATSAPP" href="#" aria-label="WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
+          <a data-link="TELEGRAM" href="#" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3>Produto</h3>
+        <ul>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#baixar">Baixar</a></li>
+          <li><a href="#novidades">Receber novidades</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#" data-link="TERMOS_DE_USO">Termos de Uso</a></li>
+          <li><a href="#" data-link="AVISO_DE_PRIVACIDADE">Aviso de Privacidade</a></li>
+          <li><a href="#" data-link="EMAIL_PRIVACIDADE" data-email="true">Privacidade e dados pessoais</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li><a href="#" data-link="EMAIL_CONTATO" data-email="true">E-mail</a></li>
+          <li><a href="#comunidade">Comunidade</a></li>
+          <li><a href="#contato">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> YouLoop. Todos os direitos reservados.</span>
+      <span>Feito no Brasil para criadores e pequenos negócios.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a class="btn" href="#baixar"><svg aria-hidden="true"><use href="#i-download"/></svg>Baixar o YouLoop grátis</a>
+</div>
+
+<script>
+/* ==========================================================================
+   CONFIGURAÇÃO — troque aqui os links e contatos definitivos.
+   Qualquer valor que comece com "SUBSTITUIR_" é tratado como "ainda não
+   disponível": o botão aparece com o selo "Em breve" e não leva a lugar nenhum.
+   ========================================================================== */
+const YOULOOP_CONFIG = {
+  links: {
+    DOWNLOAD_WINDOWS:     'SUBSTITUIR_LINK_DOWNLOAD_WINDOWS',
+    DOWNLOAD_GITHUB:      'SUBSTITUIR_LINK_GITHUB_RELEASES',
+    DOWNLOAD_GOOGLE_PLAY: 'SUBSTITUIR_LINK_GOOGLE_PLAY',
+    DOWNLOAD_APP_STORE:   'SUBSTITUIR_LINK_APP_STORE',
+
+    YOUTUBE:   'SUBSTITUIR_LINK_YOUTUBE',
+    FACEBOOK:  'SUBSTITUIR_LINK_FACEBOOK',
+    INSTAGRAM: 'SUBSTITUIR_LINK_INSTAGRAM',
+    TIKTOK:    'SUBSTITUIR_LINK_TIKTOK',
+    WHATSAPP:  'SUBSTITUIR_LINK_WHATSAPP_CANAL',
+    TELEGRAM:  'SUBSTITUIR_LINK_TELEGRAM',
+
+    TERMOS_DE_USO:        'SUBSTITUIR_LINK_TERMOS_DE_USO',
+    AVISO_DE_PRIVACIDADE: 'SUBSTITUIR_LINK_AVISO_DE_PRIVACIDADE',
+
+    // E-mails (sem "mailto:"; o site monta o link)
+    EMAIL_CONTATO:     'SUBSTITUIR_EMAIL_CONTATO',
+    EMAIL_PRIVACIDADE: 'SUBSTITUIR_EMAIL_PRIVACIDADE'
+  },
+
+  newsletter: {
+    // Endereço do backend que recebe o cadastro (POST, JSON). Vazio = cadastro
+    // ainda não disponível: o formulário valida, mas não envia nem simula sucesso.
+    endpoint: '',
+    // Cabeçalhos extras, se o backend exigir (ex.: chave de API pública).
+    headers: {},
+    // País padrão do WhatsApp quando o número vem sem "+" (código de discagem).
+    defaultDialCode: '55'
+  }
+};
+
+/* ==========================================================================
+   Comportamento da página
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  const cfg = YOULOOP_CONFIG;
+  const isPlaceholder = (v) => !v || String(v).startsWith('SUBSTITUIR_');
+
+  // ---------- Links centralizados ----------
+  document.querySelectorAll('[data-link]').forEach((el) => {
+    const key = el.getAttribute('data-link');
+    const value = cfg.links[key];
+    const isEmail = el.hasAttribute('data-email');
+
+    if (isPlaceholder(value)) {
+      el.setAttribute('aria-disabled', 'true');
+      el.removeAttribute('href');
+      el.setAttribute('role', 'link');
+      if (el.classList.contains('platform') || el.classList.contains('social')) {
+        const badge = document.createElement('span');
+        badge.className = 'soon';
+        badge.textContent = 'Em breve';
+        el.appendChild(badge);
+      }
+      if (isEmail && el.classList.contains('mail')) el.textContent = 'E-mail em breve';
+      el.title = 'Disponível em breve';
+      return;
+    }
+
+    if (isEmail) {
+      el.href = 'mailto:' + value;
+      if (el.classList.contains('mail')) el.textContent = value;
+    } else {
+      el.href = value;
+      if (/^https?:/i.test(value)) {
+        el.target = '_blank';
+        el.rel = 'noopener noreferrer';
+      }
+    }
+  });
+
+  // ---------- Cabeçalho e menu ----------
+  const header = document.querySelector('.site-header');
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('menu');
+  const sticky = document.getElementById('sticky-cta');
+  const hero = document.querySelector('.hero');
+  const download = document.getElementById('baixar');
+
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menu.classList.toggle('is-open', open);
+  });
+  menu.addEventListener('click', (e) => {
+    if (e.target.closest('a')) {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menu');
+      menu.classList.remove('is-open');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+      toggle.click();
+      toggle.focus();
+    }
+  });
+
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Botão flutuante (celular): aparece depois do topo e some na área de download
+  if ('IntersectionObserver' in window) {
+    let heroVisible = true, downloadVisible = false;
+    const update = () => sticky.classList.toggle('is-visible', !heroVisible && !downloadVisible);
+    new IntersectionObserver(([en]) => { heroVisible = en.isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(([en]) => { downloadVisible = en.isIntersecting; update(); }, { threshold: 0.15 }).observe(download);
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- O loop do topo: desenha o símbolo e solta as tarefas ----------
+  const line = document.querySelector('.loop-glyph-line');
+  const stage = document.querySelector('.loop-stage');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // As tarefas seguem o caminho em coordenadas de 560x560; escala para o tamanho real
+  const scaleTasks = () => {
+    const s = stage.clientWidth / 560;
+    const path = 'path("' + scalePath(s) + '")';
+    stage.querySelectorAll('.task').forEach((t) => { t.style.offsetPath = path; });
+  };
+  const scalePath = (s) => {
+    const c = (280 * s).toFixed(2), top = (60 * s).toFixed(2), r = (220 * s).toFixed(2);
+    return 'M ' + c + ' ' + top + ' A ' + r + ' ' + r + ' 0 1 1 ' + (280 * s - 0.01).toFixed(2) + ' ' + top + ' Z';
+  };
+  scaleTasks();
+  window.addEventListener('resize', scaleTasks);
+
+  if (!reduce && line.getTotalLength) {
+    const len = line.getTotalLength();
+    line.style.strokeDasharray = len;
+    line.style.strokeDashoffset = len;
+    line.getBoundingClientRect();
+    line.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.65,0,.35,1)';
+    requestAnimationFrame(() => {
+      line.style.strokeDashoffset = '0';
+      stage.classList.add('is-ready');
+    });
+  } else {
+    stage.classList.add('is-ready');
+  }
+
+  // ---------- Formulário de novidades ----------
+  const form = document.getElementById('news-form');
+  const status = document.getElementById('news-status');
+  const submit = document.getElementById('news-submit');
+  const fields = {
+    name: document.getElementById('f-name'),
+    email: document.getElementById('f-email'),
+    whatsapp: document.getElementById('f-whatsapp'),
+    consent: document.getElementById('f-consent'),
+    site: document.getElementById('f-site')
+  };
+
+  const clean = (s) => String(s || '').replace(/[\u0000-\u001F\u007F<>]/g, '').replace(/\s+/g, ' ').trim();
+
+  const normalizeWhatsApp = (raw) => {
+    let v = String(raw || '').trim();
+    const hasPlus = v.startsWith('+');
+    let digits = v.replace(/\D/g, '');
+    if (!hasPlus) {
+      digits = digits.replace(/^0+/, '');
+      if (digits.length === 10 || digits.length === 11) digits = cfg.newsletter.defaultDialCode + digits;
+    }
+    return /^[1-9]\d{9,14}$/.test(digits) ? '+' + digits : '';
+  };
+
+  const rules = {
+    name: () => clean(fields.name.value).length >= 2,
+    email: () => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fields.email.value.trim()),
+    whatsapp: () => normalizeWhatsApp(fields.whatsapp.value) !== ''
+  };
+
+  const setError = (name, bad) => {
+    const wrap = fields[name].closest('.field');
+    wrap.classList.toggle('has-error', bad);
+    fields[name].setAttribute('aria-invalid', String(bad));
+  };
+
+  ['name', 'email', 'whatsapp'].forEach((name) => {
+    fields[name].addEventListener('blur', () => { if (fields[name].value) setError(name, !rules[name]()); });
+    fields[name].addEventListener('input', () => {
+      if (fields[name].closest('.field').classList.contains('has-error')) setError(name, !rules[name]());
+    });
+  });
+  fields.whatsapp.addEventListener('blur', () => {
+    const n = normalizeWhatsApp(fields.whatsapp.value);
+    if (n) fields.whatsapp.value = n;
+  });
+  fields.consent.addEventListener('change', () => {
+    document.getElementById('consent-wrap').classList.toggle('has-error', !fields.consent.checked);
+  });
+
+  const showStatus = (kind, html) => {
+    status.className = 'form-status is-' + kind;
+    status.innerHTML = html;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'form-status';
+
+    let firstBad = null;
+    ['name', 'email', 'whatsapp'].forEach((name) => {
+      const bad = !rules[name]();
+      setError(name, bad);
+      if (bad && !firstBad) firstBad = fields[name];
+    });
+    const consentOk = fields.consent.checked;
+    document.getElementById('consent-wrap').classList.toggle('has-error', !consentOk);
+    if (firstBad) { firstBad.focus(); return; }
+    if (!consentOk) {
+      fields.consent.focus();
+      showStatus('error', 'Marque a caixa de consentimento para continuar.');
+      return;
+    }
+    if (fields.site.value) return; // robô: ignora em silêncio
+
+    const payload = {
+      name: clean(fields.name.value).slice(0, 80),
+      email: fields.email.value.trim().toLowerCase().slice(0, 120),
+      whatsapp: normalizeWhatsApp(fields.whatsapp.value),
+      consent: true,
+      consentText: 'Aceito receber comunicações do YouLoop e li o Aviso de Privacidade.',
+      source: 'site',
+      page: location.href,
+      createdAt: new Date().toISOString()
+    };
+
+    // Sem backend configurado: não envia e não finge sucesso
+    if (!cfg.newsletter.endpoint) {
+      showStatus('info', 'O cadastro de novidades abre em breve. Seus dados não foram enviados. Enquanto isso, acompanhe o YouLoop na <a href="#comunidade">comunidade</a>.');
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Enviando...';
+    try {
+      const res = await fetch(cfg.newsletter.endpoint, {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cfg.newsletter.headers),
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.reset();
+      showStatus('ok', 'Cadastro feito. Você vai receber as novidades do YouLoop no e-mail informado.');
+    } catch (err) {
+      showStatus('error', 'Não foi possível concluir o cadastro agora. Verifique sua conexão e tente de novo em alguns minutos.');
+    } finally {
+      submit.disabled = false;
+      submit.textContent = 'Quero receber novidades';
+    }
+  });
+})();
+</script>
+</body>
+</html>
